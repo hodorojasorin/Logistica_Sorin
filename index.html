@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Mulți Ani! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+            width: 90%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .birthday-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .birthday-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .title {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: bounce 2s infinite;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-control {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .music-control:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .signature {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f39c12;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        .confetti:nth-child(odd) {
+            background: #e74c3c;
+            animation-delay: -0.5s;
+        }
+
+        .confetti:nth-child(even) {
+            background: #3498db;
+            animation-delay: -1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .balloons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="balloons">🎈🎈🎈</div>
+
+    <div class="container">
+        <img src="IMG_3040.HEIC" alt="Sărbătorita" class="birthday-photo" id="birthdayPhoto">
+
+        <h1 class="title">ziua Arianei tipa 😛</h1>
+        <p class="subtitle">hepi birdai loco, sa fii asa amuzanta ca mine mereu, iti doresc un sincer la anul si la
+            multi ani si o dedicatie din partea mea</p>
+
+        <button class="music-control" onclick="toggleMusic()">🎵 Pornește Muzica</button>
+
+        <audio id="birthdayMusic" loop>
+            <source src="tzan.mp3" type="audio/mpeg">
+            Browserul tău nu suportă elementul audio.
+        </audio>
+    </div>
+
+    <div class="signature">
+        by sorin 😝 aka strangealert
+    </div>
+
+    <script>
+        // Creează confetti animat
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(confetti);
+
+                // Șterge confetti după animație
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Funcție pentru controlul muzicii
+        let isPlaying = false;
+        const music = document.getElementById('birthdayMusic');
+        const musicBtn = document.querySelector('.music-control');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.innerHTML = '🎵 Pornește Muzica';
+                isPlaying = false;
+            } else {
+                music.play().catch(e => {
+                    alert('Nu s-a putut reda muzica. Asigură-te că fișierul audio există în același folder.');
+                });
+                musicBtn.innerHTML = '⏸️ Oprește Muzica';
+                isPlaying = true;
+            }
+        }
+
+        // Adaugă funcționalitate pentru schimbarea imaginii
+        document.getElementById('birthdayPhoto').addEventListener('click', function () {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('birthdayPhoto').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        });
+
+
+        // Adaugă efecte sonore la hover
+        document.querySelectorAll('.music-control, .birthday-photo').forEach(element => {
+            element.addEventListener('mouseenter', function () {
+                this.style.transform = 'scale(1.05)';
+            });
+            element.addEventListener('mouseleave', function () {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+
+</html>
