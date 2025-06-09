@@ -19,7 +19,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            flex-direction: column;
+            /* nou: permite layout vertical */
+            overflow-x: hidden;
+            /* păstrează blocarea pe orizontală */
+            overflow-y: auto;
+            /* permite scroll vertical */
         }
 
         .container {
@@ -210,28 +215,13 @@
         </audio>
     </div>
 
+    <br>
+    <br><br><br>
     <div class="signature">
         by sorin 😝 aka strangealert
     </div>
 
     <script>
-        // Creează confetti animat
-        function createConfetti() {
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.animationDelay = Math.random() * 3 + 's';
-                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                document.body.appendChild(confetti);
-
-                // Șterge confetti după animație
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-        }
-
         // Funcție pentru controlul muzicii
         let isPlaying = false;
         const music = document.getElementById('birthdayMusic');
@@ -250,35 +240,6 @@
                 isPlaying = true;
             }
         }
-
-        // Adaugă funcționalitate pentru schimbarea imaginii
-        document.getElementById('birthdayPhoto').addEventListener('click', function () {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-            input.onchange = function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        document.getElementById('birthdayPhoto').src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            };
-            input.click();
-        });
-
-
-        // Adaugă efecte sonore la hover
-        document.querySelectorAll('.music-control, .birthday-photo').forEach(element => {
-            element.addEventListener('mouseenter', function () {
-                this.style.transform = 'scale(1.05)';
-            });
-            element.addEventListener('mouseleave', function () {
-                this.style.transform = 'scale(1)';
-            });
-        });
     </script>
 </body>
 
